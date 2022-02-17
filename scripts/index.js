@@ -63,7 +63,6 @@ function collectData() {
     if(data.length != 23){
         document.getElementById("err_msg").innerText = "You have to pick a winner in all categories (✿◠‿◠)"
     } else {
-        alert("lesgoo")
         window.localStorage.clear()
         window.localStorage.setItem("Eleccion", data)
         console.log(localStorage.getItem("Eleccion"))
