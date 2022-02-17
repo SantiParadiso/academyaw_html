@@ -1,0 +1,62 @@
+#buttercont{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#err_msg{
+    color: red;
+    font-weight: bolder;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.space{
+    display: solid;
+    margin: 15px;
+    border: 1px solid #FA58B6;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.singlecont{
+    display: inline-block;
+    padding: 5px;
+    border-radius: 1px;
+    background-color: #7A0BC0;
+    margin: 5px;
+    justify-content: center;
+    color: white;
+    font-size: large;
+}
+
+.title{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: bolder;
+    color: white;
+}
+
+.button{
+    margin-bottom: 20px;
+    padding: 5px;
+    background-color: #FA58B6;
+    border: none;
+    font-size: larger;
+    border-radius: 3px;
+}
+.button:hover{
+    background-color: #7A0BC0;
+}
+
+.texter{
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1A1A40;
+}
