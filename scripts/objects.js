@@ -1,27 +1,31 @@
 export var allNoms = [];
+import { results } from "./index.js";
 
 class Nominee {
     constructor(name, category, info, ct) {
-        this.ct = ct;
-        this.category = category;
-        this.name = name;
-        this.info = info;
-        this.winner = null;
+        this.ct = ct; // un nombre corto para que cuando tenga que usar ids no me vuelva loco con nombres insoportables.
+        this.category = category; // la categoria para la que estan nominados
+        this.name = name; // El nombre de las personas que van a ganar el premio, me tome bastantes libertades con esto
+        this.info = info; // El nombre de la pelicula que se gana el premio, asi algo está estandarizado.
+        this.winner = null; // el winner es null porque lo voy a cambiar con una funcion en el otro script cuando tenga los resultados
     }
 }
 
 function createBest(names, info, category, ct) {
     for(let ele in names){
         let nom = new Nominee(names[ele], category, info[ele], ct)
-        allNoms.push(nom);
+        allNoms.push(nom); // condenso todo en una sola función
     }
 }
 
-export default function createAllNoms() {
+export default function createAllNoms() { // esta es la funcion de la que parte todo
     let names; 
     let info; 
     let category; 
     // BEST PICTURE
+
+    // Basicamente, como hay demasiados nominados y son muy mixtos, no había forma de automatizar todo sin quedar pelado.
+    // Así que tome un enfoque de base de datos y puse a mano los 120, automatizando lo que pude.
 
     category = "Best Picture";
     names = ["Belfast", "Coda", "Don't Look Up", "Drive My Car", "Dune", "King Richard", "Licorice Pizza", "Nightmare Alley", "The Power of the Dog", "West Side Story"];
@@ -72,8 +76,8 @@ export default function createAllNoms() {
     //BEST COSTUME DESIGN
 
     category = "Best Costume Design";
-    names = ["Jenny Beavan", "Massimo Cantini Parrini and Jacqueline Durran", "Jacqueline West and Robert Morgan", "Luis Sequeira", "Janusz Kaminski"]
-    info = ["DUNE PART ONE", "NIGHTMARE ALLEY", "THE POWER OF THE DOG", "THE TRAGEDY OF MACBETH", "WEST SIDE STORY"]
+    names = ["Jenny Beavan", "Massimo Cantini Parrini and Jacqueline Durran", "Jacqueline West and Robert Morgan", "Luis Sequeira", "Paul Tazewell"]
+    info = ["CRUELLA", "CYRANO", "DUNE: PART ONE", "NIGHTMARE ALLEY", "WEST SIDE STORY"]
     createBest(names, info, category, "_bcd");
     //BEST DOCUMENTARY FEATURE
 
