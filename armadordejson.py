@@ -1,0 +1,185 @@
+import json
+
+# Your list of data
+data = [
+    {"category" : "Best Picture", "winner": None, "nominees": [
+        {'name': 'Ben LeClair, Nikos Karamigios, Cord Jefferson and Jermaine Johnson, producers', 'movie': 'American Fiction', "img": "american_fiction_poster.jpg"},
+        {'name': 'Marie-Ange Luciani and David Thion, producers', 'movie': 'Anatomy of a Fall', "img": "anatomy_of_a_fall_poster.jpg"},
+        {'name': 'David Heyman, Margot Robbie, Tom Ackerley and Robbie Brenner, producers', 'movie': 'Barbie', "img": "barbie_poster.jpg"},
+        {'name': 'Mark Johnson, producer', 'movie': 'The Holdovers', "img": "the_holdovers_poster.jpg"},
+        {'name': 'Dan Friedkin, Bradley Thomas, Martin Scorsese and Daniel Lupi, producers', 'movie': 'Killers of the Flower Moon', "img": "killers_of_the_flower_moon_poster.jpg"},
+        {'name': 'Bradley Cooper, Steven Spielberg, Fred Berner, Amy Durning and Kristie Macosko Krieger, producers', 'movie': 'Maestro', "img": "maestro_poster.jpg"},
+        {'name': 'Emma Thomas, Charles Roven and Christopher Nolan, producers', 'movie': 'Oppenheimer', "img": "oppenheimer_poster.jpg"},
+        {'name': 'David Hinojosa, Christine Vachon and Pamela Koffler, producers', 'movie': 'Past Lives', "img": "past_lives_poster.jpg"},
+        {'name': 'Ed Guiney, Andrew Lowe, Yorgos Lanthimos and Emma Stone, producers', 'movie': 'Poor Things', "img": "poor_things_poster.jpg"},
+        {'name': 'James Wilson, producer', 'movie': 'The Zone of Interest', "img": "the_zone_of_interest_poster.jpg"},
+        ]},
+    {"category" : "Best Director", "winner": None, "nominees": [
+        {'name': 'Justine Triet', 'movie': 'Anatomy of a Fall', "img": ""},
+        {'name': 'Martin Scorsese', 'movie': 'Killers of the Flower Moon', "img": ""},
+        {'name': 'Christopher Nolan', 'movie': 'Oppenheimer', "img": ""},
+        {'name': 'Yorgos Lanthimos', 'movie': 'Poor Things', "img": ""},
+        {'name': 'Jonathan Glazer', 'movie': 'The Zone of Interest', "img": ""},
+    ]},
+    {"category" : "Best Actor", "winner": None, "nominees": [
+        {'name': 'Bradley Cooper', 'movie': 'Maestro', 'as_character': 'Leonard Bernstein', "img": ""},
+        {'name': 'Colman Domingo', 'movie': 'Rustin', 'as_character': 'Bayard Rustin', "img": ""},
+        {'name': 'Paul Giamatti', 'movie': 'The Holdovers', 'as_character': 'Paul Hunham', "img": ""},
+        {'name': 'Cillian Murphy', 'movie': 'Oppenheimer', 'as_character': 'J. Robert Oppenheimer', "img": ""},
+        {'name': 'Jeffrey Wright', 'movie': 'American Fiction', 'as_character': 'Thelonious "Monk" Ellison', "img": ""},
+    ]}, 
+    {"category" : "Best Actress", "winner": None, "nominees": [
+        {'name': 'Annette Bening', 'movie': 'Nyad', 'as_character': 'Diana Nyad', "img": ""},
+        {'name': 'Lily Gladstone', 'movie': 'Killers of the Flower Moon', 'as_character': 'Mollie Burkhart', "img": ""},
+        {'name': 'Sandra Hüller', 'movie': 'Anatomy of a Fall', 'as_character': 'Sandra Voyter', "img": ""},
+        {'name': 'Carey Mulligan', 'movie': 'Maestro', 'as_character': 'Felicia Montealegre', "img": ""},
+        {'name': 'Emma Stone', 'movie': 'Poor Things', 'as_character': 'Bella Baxter', "img": ""},
+    ]}, 
+    {"category" : "Best Supporting Actor", "winner": None, "nominees": [
+        {'name': 'Sterling K. Brown', 'movie': 'American Fiction', 'as_character': 'Clifford "Cliff" Ellison', "img": ""},
+        {'name': 'Robert De Niro', 'movie': 'Killers of the Flower Moon', 'as_character': 'William King Hale', "img": ""},
+        {'name': 'Robert Downey Jr.', 'movie': 'Oppenheimer', 'as_character': 'Lewis Strauss', "img": ""},
+        {'name': 'Ryan Gosling', 'movie': 'Barbie', 'as_character': 'Ken', "img": ""},
+        {'name': 'Mark Ruffalo', 'movie': 'Poor Things', 'as_character': 'Duncan Wedderburn', "img": ""},
+    ]}, 
+    {"category" : "Best Supporting Actress", "winner": None, "nominees": [
+        {'name': 'Emily Blunt', 'movie': 'Oppenheimer', 'as_character': 'Kitty Oppenheimer', "img": ""},
+        {'name': 'Danielle Brooks', 'movie': 'The Color Purple', 'as_character': 'Sofia', "img": ""},
+        {'name': 'America Ferrera', 'movie': 'Barbie', 'as_character': 'Gloria', "img": ""},
+        {'name': 'Jodie Foster', 'movie': 'Nyad', 'as_character': 'Bonnie Stoll', "img": ""},
+        {'name': 'Da\'Vine Joy Randolph', 'movie': 'The Holdovers', 'as_character': 'Mary Lamb', "img": ""},
+    ]},
+    {"category" : "Best Original Screenplay", "winner": None, "nominees": [
+        {'name': 'Justine Triet and Arthur Harari', 'movie': 'Anatomy of a Fall', "img": ""},
+        {'name': 'David Hemingson', 'movie': 'The Holdovers', "img": ""},
+        {'name': 'Bradley Cooper and Josh Singer', 'movie': 'Maestro', "img": ""},
+        {'name': 'Screenplay by Samy Burch; Story by Samy Burch and Alex Mechanik', 'movie': 'May December', "img": ""},
+        {'name': 'Celine Song', 'movie': 'Past Lives', "img": ""},
+    ]}, 
+    {"category" : "Best Adapted Screenplay", "winner": None, "nominees": [
+        {'name': 'American Fiction', 'movie': 'Cord Jefferson', 'based_on': 'the novel Erasure by Percival Everett', "img": ""},
+        {'name': 'Barbie', 'movie': 'Greta Gerwig and Noah Baumbach', 'based_on': 'characters created by Ruth Handler', "img": ""},
+        {'name': 'Oppenheimer', 'movie': 'Christopher Nolan', 'based_on': 'the biography American Prometheus by Kai Bird and Martin J. Sherwin', "img": ""},
+        {'name': 'Poor Things', 'movie': 'Tony McNamara', 'based_on': 'the novel by Alasdair Gray', "img": ""},
+        {'name': 'The Zone of Interest', 'movie': 'Jonathan Glazer', 'based_on': 'the novel by Martin Amis', "img": ""},
+    ]}, 
+    {"category" : "Best Animated Feature", "winner": None, "nominees": [
+        {'name': 'Hayao Miyazaki and Toshio Suzuki', 'movie': 'The Boy and the Heron', "img": ""},
+        {'name': 'Peter Sohn and Denise Ream', 'movie': 'Elemental', "img": ""},
+        {'name': 'Nick Bruno, Troy Quane, Karen Ryan and Julie Zackary', 'movie': 'Nimona', "img": ""},
+        {'name': 'Pablo Berger, Ibon Cormenzana, Ignasi Estapé and Sandra Tapia Díaz', 'movie': 'Robot Dreams', "img": ""},
+        {'name': 'Kemp Powers, Justin K. Thompson, Phil Lord, Christopher Miller and Amy Pascal', 'movie': 'Spider-Man: Across the Spider-Verse', "img": ""},
+    ]},
+    {"category" : "Best International Feature Film", "winner": None, "nominees": [
+            {'name': 'Matteo Garrone', 'movie': 'Io capitano', 'country': 'Italy', "img": ""},
+            {'name': 'Wim Wenders', 'movie': 'Perfect Days', 'country': 'Japan', "img": ""},
+            {'name': 'J. A. Bayona', 'movie': 'Society of the Snow', 'country': 'Spain', "img": ""},
+            {'name': 'İlker Çatak', 'movie': 'The Teachers\' Lounge', 'country': 'Germany', "img": ""},
+            {'name': 'Jonathan Glazer', 'movie': 'The Zone of Interest', 'country': 'United Kingdom', "img": ""},
+    ]},
+    {"category" : "Best Documentary Feature Film", "winner": None, "nominees": [
+            {'name': 'Moses Bwayo, Christopher Sharp and John Battsek', 'movie': 'Bobi Wine: The People\'s President', "img": ""},
+            {'name': 'Maite Alberdi, Juan de Dios Larraín, Pablo Larraín and Rocio Jadue', 'movie': 'The Eternal Memory', "img": ""},
+            {'name': 'Kaouther Ben Hania and Nadim Cheikhrouha', 'movie': 'Four Daughters', "img": ""},
+            {'name': 'Nisha Pahuja, Cornelia Principe and David Oppenheim', 'movie': 'To Kill a Tiger', "img": ""},
+            {'name': 'Mstyslav Chernov, Michelle Mizner and Raney Aronson-Rath', 'movie': '20 Days in Mariupol', "img": ""},
+    ]},
+    {"category" : "Best Documentary Short Film", "winner": None, "nominees": [
+            {'name': 'Sheila Nevins and Trish Adlesic', 'movie': 'The ABCs of Book Banning', "img": ""},
+            {'name': 'John Hoffman and Christine Turner', 'movie': 'The Barber of Little Rock', "img": ""},
+            {'name': 'S. Leo Chiang and Jean Tsien', 'movie': 'Island in Between', "img": ""},
+            {'name': 'Ben Proudfoot and Kris Bowers', 'movie': 'The Last Repair Shop', "img": ""},
+            {'name': 'Sean Wang and Sam Davis', 'movie': 'Nǎi Nai & Wài Pó', "img": ""},
+    ]},
+    {"category" : "Best Live Action Short Film", "winner": None, "nominees": [
+            {'name': 'Misan Harriman and Nicky Bentham', 'movie': 'The After', "img": ""},
+            {'name': 'Vincent René-Lortie and Samuel Caron', 'movie': 'Invincible', "img": ""},
+            {'name': 'Lasse Lyskjær Noer and Christian Norlyk', 'movie': 'Knight of Fortune', "img": ""},
+            {'name': 'Nazrin Choudhury and Sara McFarlane', 'movie': 'Red, White and Blue', "img": ""},
+            {'name': 'Wes Anderson and Steven Rales', 'movie': 'The Wonderful Story of Henry Sugar', "img": ""},
+    ]},
+    {"category" : "Best Animated Short Film", "winner": None, "nominees": [
+            {'name': 'Tal Kantor and Amit R. Gicelter', 'movie': 'Letter to a Pig', "img": ""},
+            {'name': 'Jared and Jerusha Hess', 'movie': 'Ninety-Five Senses', "img": ""},
+            {'name': 'Yegane Moghaddam', 'movie': 'Our Uniform', "img": ""},
+            {'name': 'Stéphanie Clément and Marc Rius', 'movie': 'Pachyderme', "img": ""},
+            {'name': 'Dave Mullins and Brad Booker', 'movie': 'War Is Over! Inspired by the Music of John and Yoko', "img": ""},
+    ]},
+    {"category" : "Best Original Score", "winner": None, "nominees": [
+            {'name': 'Laura Karpman', 'movie': 'American Fiction', "img": ""},
+            {'name': 'John Williams', 'movie': 'Indiana Jones and the Dial of Destiny', "img": ""},
+            {'name': 'Robbie Robertson', 'movie': 'Killers of the Flower Moon', "img": ""},
+            {'name': 'Ludwig Göransson', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Jerskin Fendrix', 'movie': 'Poor Things', "img": ""},
+    ]},
+    {"category" : "Best Original Song", "winner": None, "nominees": [
+            {'name': 'Diane Warren', 'movie': 'Flamin\' Hot', 'song_name': '"The Fire Inside"', "img": ""},
+            {'name': 'Mark Ronson and Andrew Wyatt', 'movie': 'Barbie', 'song_name': '"I\'m Just Ken"', "img": ""},
+            {'name': 'Jon Batiste and Dan Wilson', 'movie': 'American Symphony', 'song_name': '"It Never Went Away"', "img": ""},
+            {'name': 'Scott George', 'movie': 'Killers of the Flower Moon', 'song_name': '"Wahzhazhe (A Song for My People)"', "img": ""},
+            {'name': 'Billie Eilish and Finneas O\'Connell', 'movie': 'Barbie', 'song_name': '"What Was I Made For?"', "img": ""},
+    ]},
+    {"category" : "Best Sound", "winner": None, "nominees": [
+            {'name': 'Ian Voigt, Erik Aadahl, Ethan Van der Ryn, Tom Ozanich and Dean Zupancic', 'movie': 'The Creator', "img": ""},
+            {'name': 'Steven A. Morrow, Richard King, Jason Ruder, Tom Ozanich and Dean Zupancic', 'movie': 'Maestro', "img": ""},
+            {'name': 'Chris Munro, James H. Mather, Chris Burdon and Mark Taylor', 'movie': 'Mission: Impossible – Dead Reckoning Part One', "img": ""},
+            {'name': 'Willie Burton, Richard King, Gary A. Rizzo and Kevin O\'Connell', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Tarn Willers and Johnnie Burn', 'movie': 'The Zone of Interest', "img": ""},
+    ]},
+    {"category" : "Best Production Design", "winner": None, "nominees": [
+            {'name': 'Production Design: Sarah Greenwood; Set Decoration: Katie Spencer', 'movie': 'Barbie', "img": ""},
+            {'name': 'Production Design: Jack Fisk; Set Decoration: Adam Willis', 'movie': 'Killers of the Flower Moon', "img": ""},
+            {'name': 'Production Design: Arthur Max; Set Decoration: Elli Griff', 'movie': 'Napoleon', "img": ""},
+            {'name': 'Production Design: Ruth De Jong; Set Decoration: Claire Kaufman', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Production Design: James Price and Shona Heath; Set Decoration: Zsuzsa Mihalek', 'movie': 'Poor Things', "img": ""},
+    ]},
+    {"category" : "Best Cinematography", "winner": None, "nominees": [
+            {'name': 'Edward Lachman', 'movie': 'El Conde', "img": ""},
+            {'name': 'Rodrigo Prieto', 'movie': 'Killers of the Flower Moon', "img": ""},
+            {'name': 'Matthew Libatique', 'movie': 'Maestro', "img": ""},
+            {'name': 'Hoyte van Hoytema', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Robbie Ryan', 'movie': 'Poor Things', "img": ""},
+    ]},
+    {"category" : "Best Makeup and Hairstyling", "winner": None, "nominees": [
+            {'name': 'Karen Hartley Thomas, Suzi Battersby and Ashra Kelly-Blue', 'movie': 'Golda', "img": ""},
+            {'name': 'Kazu Hiro, Kay Georgiou and Lori McCoy-Bell', 'movie': 'Maestro', "img": ""},
+            {'name': 'Luisa Abel', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Nadia Stacey, Mark Coulier and Josh Weston', 'movie': 'Poor Things', "img": ""},
+            {'name': 'Ana López-Puigcerver, David Martí and Montse Ribé', 'movie': 'Society of the Snow', "img": ""},
+    ]},
+    {"category" : "Best Costume Design", "winner": None, "nominees": [
+            {'name': 'Jacqueline Durran', 'movie': 'Barbie', "img": ""},
+            {'name': 'Jacqueline West', 'movie': 'Killers of the Flower Moon', "img": ""},
+            {'name': 'Janty Yates and Dave Crossman', 'movie': 'Napoleon', "img": ""},
+            {'name': 'Ellen Mirojnick', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Holly Waddington', 'movie': 'Poor Things', "img": ""},
+    ]},
+    {"category" : "Best Film Editing", "winner": None, "nominees": [
+            {'name': 'Laurent Sénéchal', 'movie': 'Anatomy of a Fall', "img": ""},
+            {'name': 'Kevin Tent', 'movie': 'The Holdovers', "img": ""},
+            {'name': 'Thelma Schoonmaker', 'movie': 'Killers of the Flower Moon', "img": ""},
+            {'name': 'Jennifer Lame', 'movie': 'Oppenheimer', "img": ""},
+            {'name': 'Yorgos Mavropsaridis', 'movie': 'Poor Things', "img": ""},
+    ]},
+    {"category" : "Best Visual Effects", "winner": None, "nominees": [
+            {'name': 'Jay Cooper, Ian Comley, Andrew Roberts and Neil Corbould', 'movie': 'The Creator', "img": ""},
+            {'name': 'Takashi Yamazaki, Kiyoko Shibuya, Masaki Takahashi and Tatsuji Nojima', 'movie': 'Godzilla Minus One', "img": ""},
+            {'name': 'Stephane Ceretti, Alexis Wajsbrot, Guy Williams and Theo Bialek', 'movie': 'Guardians of the Galaxy Vol. 3', "img": ""},
+            {'name': 'Alex Wuttke, Simone Coco, Jeff Sutherland and Neil Corbould', 'movie': 'Mission: Impossible – Dead Reckoning Part One', "img": ""},
+            {'name': 'Charley Henley, Luc-Ewen Martin-Fenouillet, Simone Coco and Neil Corbould', 'movie': 'Napoleon', "img": ""},
+    ]},
+]
+'''
+    {"category" : "", "winner": None, "nominees": [
+            {'name': '', 'movie': '', "img": ""},
+            {'name': '', 'movie': '', "img": ""},
+            {'name': '', 'movie': '', "img": ""},
+            {'name': '', 'movie': '', "img": ""},
+            {'name': '', 'movie': '', "img": ""},
+    ]},
+'''
+
+# Convert the data to JSON and write to a file
+with open('output.json', 'w') as json_file:
+    json.dump(data, json_file, indent=2)  # indent for better readability
+    

@@ -1,42 +1,38 @@
-#buttercont{
-    display: flex;
-    justify-content: flex-end;
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #1A1A40;
 }
 
-#err_msg{
+p {
+    margin: 0px;
+}
+
+#err_msg {
     color: red;
     font-weight: bolder;
     margin-top: 5px;
     margin-right: 10px;
 }
 
-.space{
+.space {
     margin: 15px;
     border: 1px solid #FA58B6;
     justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
 }
 
-.singlecont{
-    display: inline-block;
-    padding: 5px;
-    border-radius: 1px;
-    background-color: #7A0BC0;
-    margin: 5px;
-    justify-content: center;
-    color: white;
-    font-size: large;
-}
-
-.title{
-    margin-left: 20px;
-    margin-right: 20px;
+.title {
+    margin-top: 15px;
+    margin-bottom: 5px;
     font-weight: bolder;
+    font-size: 20px;
     color: white;
 }
 
-.button{
+.button {
     margin-bottom: 20px;
     padding: 5px;
     background-color: #FA58B6;
@@ -44,27 +40,23 @@
     font-size: larger;
     border-radius: 3px;
 }
-.button:hover{
+
+.button:hover {
     background-color: #7A0BC0;
 }
 
-.texter{
+.texter {
     margin-left: 20px;
     color: white;
     font-weight: bold;
     font-size: large;
 }
 
-body{
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #1A1A40;
-}
-
-#none{
+#none {
     display: none;
 }
 
-#blocker{
+#blocker {
     position: absolute;
     display: flex;
     z-index: 2;
@@ -74,8 +66,62 @@ body{
     justify-content: center;
 }
 
-#_errmsg{
+#_errmsg {
     margin-top: 20%;
     color: white;
     text-align: center;
+}
+
+.card {
+    border: 1px solid #FA58B6;
+    width: 15vw;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    min-width: 180px !important;
+}
+
+.card:hover {
+    background-color: #7A0BC0;
+    cursor: pointer;
+}
+
+.text_container {
+    color: white;
+    text-align: right;
+    display: block;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 140px;
+    font-size: 12px;
+    backdrop-filter: blur(2px);
+}
+
+.nominee_names {
+    height: 61px;
+    margin-bottom: 5px;
+}
+
+.movie_name {
+    font-weight: bolder;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.song_name {
+    font-style: italic;
+}
+
+.as_character {
+    font-style: italic;
+}
+
+.card_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    width: 90vw;
+    justify-content: center;
 }
