@@ -34,105 +34,7 @@ var phase = 0; // 0 se puede elegir - 1 es mientras esté el show - 2 son los re
 
 window.onload = function() {
     if (phase == 0) {
-        allCats.forEach((cat) => {
-                // crear funcion para armar los componentes
-                // iterar por cada propiedad de mis objetos
-                // div -> div con background-image -> div contenedor -> los spans o "p" con el texto
-                const catContainer = createContainer("div", "space")
-                const titleContainer = createContainer("div", "title_div")
-                titleContainer.appendChild(createContainer("p", "title", cat.category + ":"));
-                catContainer.appendChild(titleContainer);
-                const cardContainer = createContainer("div", "card_container")
-                cat.nominees.forEach((nom) => {
-                    const card = createContainer("div", "card")
-                    const textContainer = createContainer("div", "text_container")
-                    for (var prop in nom) {
-                        if (Object.prototype.hasOwnProperty.call(nom, prop)) {
-                            console.log(prop);
-                            switch (prop) {
-                                case "name":
-                                    textContainer.appendChild(createContainer("p", "nominee_names", nom.name))
-                                    break;
-                                case "movie":
-                                    textContainer.appendChild(createContainer("p", "movie_name", nom.movie))
-                                    break;
-                                case "song_name":
-                                    textContainer.appendChild(createContainer("p", "song_name", nom.song_name))
-                                    break;
-                                case "as_character":
-                                    textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
-                                    break;
-                                case "img":
-                                    card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 260px; background-position: 50% 50%;`);
-                                    break;
-                            }
-                        }
-                    }
-                    card.appendChild(textContainer);
-                    cardContainer.appendChild(card)
-                        /*let movie = document.createElement("span");
-                        movie.innerHTML = `<b>${nom.movie}</b></br>`;
-                        let nominees = document.createElement("span");
-                        nominees.innerHTML = nom.name;
-                        let div = document.createElement("div");
-                        div.appendChild(movie);
-                        div.appendChild(nominees);
-                        div.setAttribute("class", "singlecont");
-                        catContainer.appendChild(div);*/
-                })
-                catContainer.appendChild(cardContainer);
-                document.body.appendChild(catContainer);
-            })
-            /*
-            for (let ele in allNoms) {
-                if (aux != allNoms[ele].category) { //Como estoy trabajando en un array grande, tengo que distinguir categoria x categoria.
-
-                    aux = allNoms[ele].category;
-
-                    let div = document.createElement("div"); // Contenedor de la categoria completa
-                    div.id = allNoms[ele].ct;
-                    div.setAttribute("class", "space");
-
-                    let text = document.createElement("p"); // Y el titulo de la categoria
-                    text.innerHTML = allNoms[ele].category + ":";
-                    div.appendChild(text);
-                    text.setAttribute("class", "title");
-
-                    document.body.appendChild(div);
-                }
-                let categ = document.getElementById(allNoms[ele].ct); // id nombrado en el objeto
-
-                let cont = document.createElement("label"); // todo el bloque es un label asi no tenes q apretar el circulito
-                cont.setAttribute("class", "singlecont");
-
-                let input = document.createElement("input"); // circulo
-                input.type = "radio";
-                input.name = allNoms[ele].ct;
-                input.id = ele;
-
-                let span = document.createElement("span"); // span con el texto para no tener problemas de display
-                span.innerHTML = "<b>" + allNoms[ele].nominees[0].name + "</b></br><i>(" + allNoms[ele].info + ")</i>";
-
-                cont.appendChild(input);
-                cont.appendChild(span);
-                categ.appendChild(cont);
-            }
-
-            let butt_err = document.createElement("div");
-            butt_err.id = "buttercont";
-
-            let button = document.createElement("button");
-            button.innerText = "SAVE PICKS";
-            button.setAttribute("class", "button");
-            button.addEventListener("click", collectData);
-
-            let errorMsg = document.createElement("span");
-            errorMsg.id = "err_msg";
-
-            butt_err.appendChild(errorMsg);
-            butt_err.appendChild(button);
-            document.body.appendChild(butt_err);
-            */
+        renderCategory(0)
     } else if (phase == 1) { // va por fases para que no se interpongan
         document.getElementById("none").id = "blocker"; //cubro todo el texto con un div
         let block_mess = document.createElement("h1");
@@ -166,18 +68,56 @@ window.onload = function() {
     }
 }
 
-/*function collectData() {
-    data = [];
-    for (let i = 0; i < 120; i++) { // Hardcodeado los 120 nominados
-        let check = document.getElementById(i).checked // chequeo el numero del array al que pertenece cada uno.
-        if (check == true) {
-            data.push(i) // si lo seleccionaste, lo mando a un array
+function renderCategory(index) {
+    // crear funcion para armar los componentes
+    // iterar por cada propiedad de mis objetos
+    // div -> div con background-image -> div contenedor -> los spans o "p" con el texto
+    const catContainer = createContainer("div", "space")
+    const titleContainer = createContainer("div", "title_div")
+    titleContainer.appendChild(createContainer("p", "title", allCats[index].category + ":"));
+    catContainer.appendChild(titleContainer);
+    const cardContainer = createContainer("div", "card_container")
+    if (allCats[index].category == 'Best Picture') { document.body.appendChild(createContainer("div", "scroll", "Scroll →")); }
+    var i = 0;
+    allCats[index].nominees.forEach((nom) => {
+        const card = createContainer("div", "card")
+        const textContainer = createContainer("div", "text_container")
+        for (var prop in nom) {
+            if (Object.prototype.hasOwnProperty.call(nom, prop)) {
+                console.log(prop);
+                switch (prop) {
+                    case "name":
+                        textContainer.appendChild(createContainer("p", "nominee_names", nom.name))
+                        break;
+                    case "movie":
+                        textContainer.appendChild(createContainer("p", "movie_name", nom.movie))
+                        break;
+                    case "song_name":
+                        textContainer.appendChild(createContainer("p", "song_name", nom.song_name))
+                        break;
+                    case "as_character":
+                        textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
+                        break;
+                    case "img":
+                        card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 400px; background-position: 50% 50%; left: ${(291*i).toString()}px;
+                        z-index: ${(11-i).toString()};`);
+                        break;
+                }
+            }
         }
-    }
-    if (data.length != 23) {
-        document.getElementById("err_msg").innerText = "You have to pick a winner in all categories (✿◠‿◠)"
-    } else { //mensaje de error si no elegiste uno en cada categoria
-        window.localStorage.clear()
-        window.localStorage.setItem("picks", data) //el array de seleccionados va al local storage.
-    }
-}*/
+        card.appendChild(textContainer);
+        cardContainer.appendChild(card)
+            /*let movie = document.createElement("span");
+            movie.innerHTML = `<b>${nom.movie}</b></br>`;
+            let nominees = document.createElement("span");
+            nominees.innerHTML = nom.name;
+            let div = document.createElement("div");
+            div.appendChild(movie);
+            div.appendChild(nominees);
+            div.setAttribute("class", "singlecont");
+            catContainer.appendChild(div);*/
+        i++;
+    })
+    catContainer.appendChild(cardContainer);
+    document.body.appendChild(catContainer);
+}
