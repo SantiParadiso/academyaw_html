@@ -19,6 +19,7 @@ function getJSON(url, callback) {
 getJSON("../output.json", function(jsonData) {
     console.log(jsonData)
     allCats = jsonData;
+    main();
     // Do something with the JSON data
 });
 
@@ -32,7 +33,8 @@ function createContainer(type, classes = "", content = "") {
 var results;
 var phase = 0; // 0 se puede elegir - 1 es mientras esté el show - 2 son los resultados;
 
-window.onload = function() {
+//window.onload = function() {
+function main() {
     if (phase == 0) {
         renderCategory(0)
     } else if (phase == 1) { // va por fases para que no se interpongan
@@ -67,6 +69,7 @@ window.onload = function() {
         document.getElementById("blocker").appendChild(block_mess);
     }
 }
+//}
 
 function renderCategory(index) {
     // crear funcion para armar los componentes
@@ -99,7 +102,7 @@ function renderCategory(index) {
                         textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
                         break;
                     case "img":
-                        card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 400px; background-position: 50% 50%; left: ${(291*i).toString()}px;
+                        card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 400px; background-position: 50% 50%; left: ${((291*i)+10).toString()}px;
                         z-index: ${(11-i).toString()};`);
                         break;
                 }
