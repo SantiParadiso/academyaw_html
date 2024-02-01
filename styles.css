@@ -1,6 +1,6 @@
 body {
     font-family: "Montserrat", sans-serif;
-    background-color: #1A1A40;
+    background-color: #540f80;
     margin: 0px;
 }
 
@@ -31,11 +31,13 @@ p {
     margin-top: 20px;
     margin-bottom: 5px;
     font-weight: bolder;
-    font-size: 1em;
+    font-size: 4em;
     color: white;
     position: absolute;
-    width: 50vw;
-    left: 60px;
+    min-width: 50vw;
+    text-wrap: nowrap;
+    left: 50px;
+    top: -30px
 }
 
 .title_div {
@@ -52,7 +54,7 @@ p {
 }
 
 .button:hover {
-    background-color: #7A0BC0;
+    background-color: #5e0992;
 }
 
 .texter {
@@ -90,8 +92,13 @@ p {
     align-items: flex-end;
     min-width: 180px !important;
     transition: margin 0.5s ease-in-out;
-    z-index: 11;
     border-radius: 10px;
+    z-index: 2;
+}
+
+.card,
+.card>.not_selected {
+    margin-bottom: 15px;
 }
 
 .card:hover {
@@ -108,20 +115,25 @@ p {
     padding-right: 15px;
     padding-left: 15px;
     height: 140px;
-    font-size: 12px;
-    backdrop-filter: blur(2px);
+    font-size: 13px;
+    /*backdrop-filter: blur(2px);*/
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.nominee_names {
+.text_container p {
+    background-color: #1A1A40;
+    display: inline-block;
+}
+
+.nominee_cont {
     height: 61px;
     margin-bottom: 5px;
 }
 
 .movie_name {
     font-weight: bolder;
-    font-size: 13px;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 
@@ -144,7 +156,7 @@ p {
     display: inline-block;
     position: sticky;
     top: 12vh;
-    left: 80vw;
+    left: 5vw;
     color: grey;
     z-index: 20;
     position: -webkit-sticky;
@@ -166,4 +178,25 @@ p {
     60% {
         transform: translateY(-8px);
     }
+}
+
+.card_cover {
+    width: 290px;
+    height: 70vh;
+    border-radius: 10px;
+    position: absolute;
+    transition: backdrop-filter 0.5s ease-in-out;
+}
+
+.card_cover.not_selected {
+    z-index: 3;
+    backdrop-filter: grayscale(100%);
+}
+
+label {
+    display: contents;
+}
+
+.radio_input {
+    display: none;
 }
