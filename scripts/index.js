@@ -36,7 +36,8 @@ var phase = 0; // 0 se puede elegir - 1 es mientras esté el show - 2 son los re
 //window.onload = function() {
 function main() {
     if (phase == 0) {
-        renderCategory(0)
+        var i = 22;
+        renderCategory(i);
     } else if (phase == 1) { // va por fases para que no se interpongan
         document.getElementById("none").id = "blocker"; //cubro todo el texto con un div
         let block_mess = document.createElement("h1");
@@ -75,82 +76,95 @@ function renderCategory(index) {
     // crear funcion para armar los componentes
     // iterar por cada propiedad de mis objetos
     // div -> div con background-image -> div contenedor -> los spans o "p" con el texto
-    const categoryId = allCats[index].category.toLowerCase().replace(/ /g, '_');
-    const catContainer = createContainer("div", "space")
-    const titleContainer = createContainer("div", "title_div")
-    titleContainer.appendChild(createContainer("p", "title", allCats[index].category + ":"));
-    catContainer.appendChild(titleContainer);
-    const cardContainer = createContainer("div", "card_container")
-    cardContainer.setAttribute("id", categoryId)
-    document.body.appendChild(createContainer("div", "scroll", "swipe →"));
-    var i = 0;
-    allCats[index].nominees.forEach((nom) => {
-        const movieId = nom.movie.toLowerCase().replace(/ /g, '_');
-        const card = createContainer("div", "card")
-        card.classList.add(movieId);
-        const cardCover = createContainer("div", "card_cover")
-        const textContainer = createContainer("div", "text_container")
-            // radio input
-        const input = document.createElement("input")
-        const label = document.createElement('label')
-        input.setAttribute("class", "radio_input")
-        input.setAttribute("type", "radio")
-        input.setAttribute("value", nom.movie)
-        input.setAttribute("name", categoryId)
-        input.setAttribute("id", movieId)
-        label.setAttribute("for", movieId)
-            //
-        for (var prop in nom) {
-            if (Object.prototype.hasOwnProperty.call(nom, prop)) {
-                console.log(prop);
-                switch (prop) {
-                    case "name":
-                        const nomCont = createContainer("div", "nominee_cont")
-                        nomCont.appendChild(createContainer("p", "nominee_names", nom.name))
-                        textContainer.appendChild(nomCont)
-                        break;
-                    case "movie":
-                        textContainer.appendChild(createContainer("p", "movie_name", nom.movie))
-                        break;
-                    case "song_name":
-                        textContainer.appendChild(createContainer("p", "song_name", nom.song_name))
-                        break;
-                    case "as_character":
-                        textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
-                        break;
-                    case "img":
-                        card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 450px; background-position: 50% 50%; left: ${((291*i)+10).toString()}px;`);
-                        break;
+    for (let j = 0; j < allCats.length; j++) {
+        const categoryId = allCats[j].category.toLowerCase().replace(/ /g, '_');
+        const catContainer = createContainer("section", "nom_container")
+        const titleContainer = createContainer("div", "title_div")
+        titleContainer.appendChild(createContainer("p", "title", allCats[j].category + ":"));
+        catContainer.appendChild(titleContainer);
+        const cardContainer = createContainer("div", "card_container")
+        cardContainer.setAttribute("id", categoryId)
+        document.body.appendChild(createContainer("div", "scroll", "swipe →"));
+        var i = 0;
+        allCats[j].nominees.forEach((nom) => {
+            const movieId = nom.movie.toLowerCase().replace(/ /g, '_');
+            const card = createContainer("div", "card")
+            card.classList.add(movieId);
+            const cardCover = createContainer("div", "card_cover")
+            const textContainer = createContainer("div", "text_container")
+                // radio input
+            const input = document.createElement("input")
+            const label = document.createElement('label')
+            input.setAttribute("class", "radio_input")
+            input.setAttribute("type", "radio")
+            input.setAttribute("value", nom.movie)
+            input.setAttribute("name", categoryId)
+            input.setAttribute("id", movieId)
+            label.setAttribute("for", movieId)
+                //
+            for (var prop in nom) {
+                if (Object.prototype.hasOwnProperty.call(nom, prop)) {
+                    console.log(prop);
+                    switch (prop) {
+                        case "name":
+                            const nomCont = createContainer("div", "nominee_cont")
+                            nomCont.appendChild(createContainer("p", "nominee_names", nom.name))
+                            textContainer.appendChild(nomCont)
+                            break;
+                        case "movie":
+                            textContainer.appendChild(createContainer("p", "movie_name", nom.movie))
+                            break;
+                        case "song_name":
+                            textContainer.appendChild(createContainer("p", "song_name", nom.song_name))
+                            break;
+                        case "as_character":
+                            textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
+                            break;
+                        case "img":
+                            card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 290px; left: ${((291*i)+10).toString()}px;`);
+                            break;
+                    }
                 }
             }
-        }
-        card.addEventListener('click', (event) => refreshWhenSelected(event), false)
-        card.appendChild(cardCover);
-        card.appendChild(textContainer);
-        label.appendChild(card)
-        cardContainer.appendChild(label)
-        cardContainer.appendChild(input)
-            /*let movie = document.createElement("span");
-            movie.innerHTML = `<b>${nom.movie}</b></br>`;
-            let nominees = document.createElement("span");
-            nominees.innerHTML = nom.name;
-            let div = document.createElement("div");
-            div.appendChild(movie);
-            div.appendChild(nominees);
-            div.setAttribute("class", "singlecont");
-            catContainer.appendChild(div);*/
-        i++;
-    })
-    catContainer.appendChild(cardContainer);
-    document.body.appendChild(catContainer);
+            card.addEventListener('click', (event) => refreshWhenSelected(event), false)
+            card.appendChild(cardCover);
+            card.appendChild(textContainer);
+            label.appendChild(card)
+            cardContainer.setAttribute("style", `width: ${((291*(i+1))+10).toString()}px`)
+            cardContainer.appendChild(label)
+            cardContainer.appendChild(input)
+                /*let movie = document.createElement("span");
+                movie.innerHTML = `<b>${nom.movie}</b></br>`;
+                let nominees = document.createElement("span");
+                nominees.innerHTML = nom.name;
+                let div = document.createElement("div");
+                div.appendChild(movie);
+                div.appendChild(nominees);
+                div.setAttribute("class", "singlecont");
+                catContainer.appendChild(div);*/
+            i++;
+        })
+        catContainer.appendChild(cardContainer);
+        document.body.appendChild(catContainer);
+    }
 }
 
 function refreshWhenSelected(event) {
     const comparator = Array.from(document.querySelectorAll('.card_cover'))
-    console.log(event)
+    var pick = '';
+    //console.log(event)
     comparator.forEach((ele) => {
         ele.classList.remove('not_selected')
         if (ele != event.target) { ele.classList.add('not_selected') }
+    })
+    setTimeout(() => { selectPick(); }, 0)
+}
 
+function selectPick() {
+    const selectors = Array.from(document.querySelectorAll('.radio_input'))
+    selectors.forEach((ele) => {
+        if (ele.checked) {
+            localStorage.setItem(ele.name, ele.id)
+        }
     })
 }

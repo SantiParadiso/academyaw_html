@@ -162,11 +162,11 @@ data = [
             {'name': 'Yorgos Mavropsaridis', 'movie': 'Poor Things', "img": ""},
     ]},
     {"category" : "Best Visual Effects", "winner": None, "nominees": [
-            {'name': 'Jay Cooper, Ian Comley, Andrew Roberts and Neil Corbould', 'movie': 'The Creator', "img": ""},
-            {'name': 'Takashi Yamazaki, Kiyoko Shibuya, Masaki Takahashi and Tatsuji Nojima', 'movie': 'Godzilla Minus One', "img": ""},
-            {'name': 'Stephane Ceretti, Alexis Wajsbrot, Guy Williams and Theo Bialek', 'movie': 'Guardians of the Galaxy Vol. 3', "img": ""},
-            {'name': 'Alex Wuttke, Simone Coco, Jeff Sutherland and Neil Corbould', 'movie': 'Mission: Impossible – Dead Reckoning Part One', "img": ""},
-            {'name': 'Charley Henley, Luc-Ewen Martin-Fenouillet, Simone Coco and Neil Corbould', 'movie': 'Napoleon', "img": ""},
+            {'name': 'Jay Cooper, Ian Comley, Andrew Roberts and Neil Corbould', 'movie': 'The Creator', "img": "the_creator_best_visual.jpg"},
+            {'name': 'Takashi Yamazaki, Kiyoko Shibuya, Masaki Takahashi and Tatsuji Nojima', 'movie': 'Godzilla Minus One', "img": "godzilla_minus_one_best_visual.jpg"},
+            {'name': 'Stephane Ceretti, Alexis Wajsbrot, Guy Williams and Theo Bialek', 'movie': 'Guardians of the Galaxy Vol. 3', "img": "guardians_of_the_galaxy_best_visual.jpg"},
+            {'name': 'Alex Wuttke, Simone Coco, Jeff Sutherland and Neil Corbould', 'movie': 'Mission: Impossible – Dead Reckoning Part One', "img": "mission_impossible_best_visual.jpg"},
+            {'name': 'Charley Henley, Luc-Ewen Martin-Fenouillet, Simone Coco and Neil Corbould', 'movie': 'Napoleon', "img": "napoleon_best_visual.jpg"},
     ]},
 ]
 '''
