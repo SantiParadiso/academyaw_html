@@ -7,8 +7,20 @@ body {
     scroll-behavior: smooth;
 }
 
+a {
+    color: white;
+}
+
 p {
     margin: 0px;
+}
+
+.last_p {
+    padding-bottom: 20px;
+}
+
+.smaller {
+    font-size: 12px;
 }
 
 #err_msg {
@@ -29,8 +41,7 @@ p {
     align-content: center;
     max-height: 75vh;
     height: 45vh;
-    width: 100vh;
-    margin-left: 10px;
+    width: 100vw;
     left: 10px;
 }
 
@@ -43,7 +54,9 @@ p {
     color: white;
     min-width: 50vw;
     left: 50px;
-    top: -30px
+    top: -30px;
+    text-align: center;
+    text-decoration: underline;
 }
 
 .title_div {
@@ -69,6 +82,7 @@ p {
     color: white;
     font-weight: bold;
     font-size: large;
+    margin-top: 20px;
 }
 
 #none {
@@ -118,7 +132,7 @@ p {
     padding-left: 15px;
     padding-top: 15px;
     height: 50%;
-    font-size: 13px;
+    font-size: 14px;
     /*backdrop-filter: blur(2px);*/
     border-radius: inherit;
     -webkit-user-select: none;
@@ -151,6 +165,7 @@ p {
 }
 
 .card_container {
+    padding-left: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto 1fr auto;
@@ -158,7 +173,7 @@ p {
     padding-bottom: 10px;
     overflow-y: hidden;
     overflow-x: scroll;
-    padding-right: 310px;
+    padding-right: 15px;
 }
 
 .card_container.active {
@@ -168,10 +183,8 @@ p {
 }
 
 .scroll {
-    position: sticky;
-    top: 10px;
-    margin-left: 10px;
-    color: grey;
+    display: inline;
+    color: red;
     z-index: 20;
     position: -webkit-sticky;
     animation: bounceIn 2s infinite 2s;

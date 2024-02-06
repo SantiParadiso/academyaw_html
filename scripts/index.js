@@ -1,6 +1,3 @@
-let resultadosG = [1, 13, 18, 20, 26, 31, 35, 40, 45, 53, 57, 61, 65, 73, 76, 83, 85, 94, 97, 101, 105, 110, 115]
-let data;
-
 var allCats = [];
 
 function getJSON(url, callback) {
@@ -76,7 +73,6 @@ function renderCategory() {
     // crear funcion para armar los componentes
     // iterar por cada propiedad de mis objetos
     // div -> div con background-image -> div contenedor -> los spans o "p" con el texto
-    document.body.appendChild(createContainer("div", "scroll", "swipe →"));
     for (let j = 0; j < allCats.length; j++) {
         const categoryId = allCats[j].category.toLowerCase().replace(/ /g, '_');
         const catContainer = createContainer("section", "nom_container")
@@ -100,7 +96,10 @@ function renderCategory() {
             input.setAttribute("class", "radio_input")
             input.setAttribute("type", "radio")
             input.setAttribute("value", nom.movie)
-            if (!!selectedMovie && selectedMovie == movieId) { input.setAttribute("checked", true); }
+            if (!!selectedMovie && selectedMovie == `${categoryId}-${movieId}`) {
+                input.setAttribute("checked", 'checked');
+                console.log(input)
+            }
             input.setAttribute("name", categoryId)
             input.setAttribute("id", `${categoryId}-${movieId}`) //would love to have a shorter naming convention here
             label.setAttribute("for", `${categoryId}-${movieId}`)
@@ -175,7 +174,7 @@ function renderCategory() {
             cardContainer.scrollLeft = scrollLeft - walk;
         });
         catContainer.appendChild(cardContainer);
-        document.body.appendChild(catContainer);
+        document.querySelector('#app').appendChild(catContainer);
         refreshWhenSelected(categoryId)
     }
 }
@@ -190,8 +189,16 @@ function refreshWhenSelected(categoryId) {
                 // console.log(ele.firstChild.firstChild)
                 ele.firstChild.firstChild.classList.add('not_selected')
             } else { localStorage.setItem(ele.control.name, ele.control.id) }
+            refreshFooterMessage()
         }, 0)
     })
+}
+
+function refreshFooterMessage() {
+    var text;
+    if (localStorage.length < 22) text = 'only'
+    else text = 'all'
+    document.querySelector('#footer').innerHTML = `Selected ${localStorage.length} / 23`
 }
 
 // Needs some more UX love
