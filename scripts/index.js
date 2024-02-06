@@ -72,7 +72,7 @@ function main() {
 }
 //}
 
-function renderCategory(index) {
+function renderCategory() {
     // crear funcion para armar los componentes
     // iterar por cada propiedad de mis objetos
     // div -> div con background-image -> div contenedor -> los spans o "p" con el texto
@@ -85,6 +85,7 @@ function renderCategory(index) {
         titleContainer.appendChild(createContainer("p", "title", allCats[j].category + ":"));
         catContainer.appendChild(titleContainer);
         const cardContainer = createContainer("div", "card_container")
+        if (categoryId == "best_picture") catContainer.setAttribute("style", "height: 75vh !important;")
         cardContainer.setAttribute("id", categoryId)
         var i = 0;
         allCats[j].nominees.forEach((nom) => {
@@ -99,7 +100,7 @@ function renderCategory(index) {
             input.setAttribute("class", "radio_input")
             input.setAttribute("type", "radio")
             input.setAttribute("value", nom.movie)
-            if(!!selectedMovie && selectedMovie == movieId){input.setAttribute("checked", true);}
+            if (!!selectedMovie && selectedMovie == movieId) { input.setAttribute("checked", true); }
             input.setAttribute("name", categoryId)
             input.setAttribute("id", `${categoryId}-${movieId}`) //would love to have a shorter naming convention here
             label.setAttribute("for", `${categoryId}-${movieId}`)
@@ -114,7 +115,7 @@ function renderCategory(index) {
                             textContainer.appendChild(nomCont)
                             break;
                         case "movie":
-                            textContainer.appendChild(createContainer("p", "movie_name", nom.movie))
+                            textContainer.appendChild(createContainer("p", "movie_name", `${nom.movie}`))
                             break;
                         case "song_name":
                             textContainer.appendChild(createContainer("p", "song_name", nom.song_name))
@@ -123,7 +124,7 @@ function renderCategory(index) {
                             textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
                             break;
                         case "img":
-                            card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 290px; left: ${((291*i)+10).toString()}px;`);
+                            card.setAttribute("style", `background-image: url(./img/${nom.img}); background-size: 290px;`);
                             break;
                     }
                 }
@@ -133,7 +134,7 @@ function renderCategory(index) {
             card.appendChild(cardCover);
             card.appendChild(textContainer);
             label.appendChild(card)
-            cardContainer.setAttribute("style", `width: ${((291*(i+1))+10).toString()}px`)
+                //cardContainer.setAttribute("style", `width: ${((291*(i+1))+10).toString()}px`)
             label.appendChild(input)
             cardContainer.appendChild(label)
                 /*let movie = document.createElement("span");
@@ -147,6 +148,30 @@ function renderCategory(index) {
                 catContainer.appendChild(div);*/
             i++;
         })
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        cardContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            cardContainer.classList.add('active');
+            startX = e.pageX - cardContainer.offsetLeft;
+            scrollLeft = cardContainer.scrollLeft;
+        });
+        cardContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            cardContainer.classList.remove('active');
+        });
+        cardContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            cardContainer.classList.remove('active');
+        });
+        cardContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - cardContainer.offsetLeft;
+            const walk = (x - startX) * 3; //scroll-fast
+            cardContainer.scrollLeft = scrollLeft - walk;
+        });
         catContainer.appendChild(cardContainer);
         document.body.appendChild(catContainer);
         refreshWhenSelected(categoryId)
@@ -158,10 +183,12 @@ function refreshWhenSelected(categoryId) {
     const comparator = Array.from(document.querySelector(`#${categoryId}`).childNodes)
     comparator.forEach((ele) => {
         ele.firstChild.firstChild.classList.remove('not_selected')
-        setTimeout(() => { if(!ele.control.checked){
-            // console.log(ele.firstChild.firstChild)
-            ele.firstChild.firstChild.classList.add('not_selected')
-        } else { localStorage.setItem(ele.control.name, ele.control.id) }}, 0)
+        setTimeout(() => {
+            if (!ele.control.checked) {
+                // console.log(ele.firstChild.firstChild)
+                ele.firstChild.firstChild.classList.add('not_selected')
+            } else { localStorage.setItem(ele.control.name, ele.control.id) }
+        }, 0)
     })
 }
 

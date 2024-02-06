@@ -16,13 +16,17 @@ p {
     margin-right: 10px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .nom_container {
     justify-content: flex-start;
     display: flex;
     flex-direction: column;
     align-content: center;
-    height: 75vh;
-    max-height: 75vh;
+    height: 45vh;
+    width: 100vh;
     margin-left: 10px;
     left: 10px;
 }
@@ -31,9 +35,8 @@ p {
     margin-top: 15px;
     margin-bottom: 15px;
     font-weight: bolder;
-    font-size: 4em;
+    font-size: 3em;
     color: white;
-    position: absolute;
     min-width: 50vw;
     text-wrap: nowrap;
     left: 50px;
@@ -41,7 +44,7 @@ p {
 }
 
 .title_div {
-    position: absolute;
+    display: block;
 }
 
 .button {
@@ -85,11 +88,12 @@ p {
 }
 
 .card {
-    position: absolute;
+    position: relative;
+    justify-self: center;
     width: 290px;
-    height: 55vh;
+    height: 30vh;
     display: flex;
-    align-items: flex-end;
+    /*align-items: flex-end;*/
     min-width: 180px !important;
     transition: margin 0.5s ease-in-out;
     border-radius: 10px;
@@ -98,7 +102,6 @@ p {
 
 .card:hover {
     background-color: #7A0BC0;
-    margin-bottom: 10px;
     cursor: pointer;
 }
 
@@ -109,18 +112,18 @@ p {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    height: 140px;
+    padding-top: 15px;
+    height: 50%;
     font-size: 13px;
     /*backdrop-filter: blur(2px);*/
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: inherit;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
 .text_container p {
-    background-color: #1A1A40;
+    backdrop-filter: brightness(60%);
     display: inline-block;
 }
 
@@ -144,10 +147,20 @@ p {
 }
 
 .card_container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: inherit;
+    padding-bottom: 10px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding-right: 580px;
+}
+
+.card_container.active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
 }
 
 .scroll {
