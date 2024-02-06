@@ -21,16 +21,15 @@ p {
     display: flex;
     flex-direction: column;
     align-content: center;
-    height: 95vh;
-    max-height: 95vh;
-    width: fit-content;
+    height: 75vh;
+    max-height: 75vh;
     margin-left: 10px;
     left: 10px;
 }
 
 .title {
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     font-weight: bolder;
     font-size: 4em;
     color: white;
@@ -88,7 +87,7 @@ p {
 .card {
     position: absolute;
     width: 290px;
-    height: 68vh;
+    height: 55vh;
     display: flex;
     align-items: flex-end;
     min-width: 180px !important;
@@ -152,14 +151,14 @@ p {
 }
 
 .scroll {
-    display: inline-block;
+    /*display: flex;
     position: sticky;
-    top: 11vh;
+    top: vh;
     left: 5vw;
     color: grey;
     z-index: 20;
     position: -webkit-sticky;
-    animation: bounceIn 2s infinite 2s;
+    animation: bounceIn 2s infinite 2s;*/
 }
 
 @keyframes bounceIn {

@@ -76,15 +76,16 @@ function renderCategory(index) {
     // crear funcion para armar los componentes
     // iterar por cada propiedad de mis objetos
     // div -> div con background-image -> div contenedor -> los spans o "p" con el texto
+    document.body.appendChild(createContainer("div", "scroll", "swipe →"));
     for (let j = 0; j < allCats.length; j++) {
         const categoryId = allCats[j].category.toLowerCase().replace(/ /g, '_');
         const catContainer = createContainer("section", "nom_container")
         const titleContainer = createContainer("div", "title_div")
+        var selectedMovie = localStorage.getItem(categoryId);
         titleContainer.appendChild(createContainer("p", "title", allCats[j].category + ":"));
         catContainer.appendChild(titleContainer);
         const cardContainer = createContainer("div", "card_container")
         cardContainer.setAttribute("id", categoryId)
-        document.body.appendChild(createContainer("div", "scroll", "swipe →"));
         var i = 0;
         allCats[j].nominees.forEach((nom) => {
             const movieId = nom.movie.toLowerCase().replace(/ /g, '_');
@@ -98,13 +99,14 @@ function renderCategory(index) {
             input.setAttribute("class", "radio_input")
             input.setAttribute("type", "radio")
             input.setAttribute("value", nom.movie)
+            if(selectedMovie && selectedMovie == movieId){input.setAttribute("checked", true);}
             input.setAttribute("name", categoryId)
             input.setAttribute("id", movieId)
             label.setAttribute("for", movieId)
                 //
             for (var prop in nom) {
                 if (Object.prototype.hasOwnProperty.call(nom, prop)) {
-                    console.log(prop);
+                    //console.log(prop);
                     switch (prop) {
                         case "name":
                             const nomCont = createContainer("div", "nominee_cont")
@@ -126,13 +128,14 @@ function renderCategory(index) {
                     }
                 }
             }
-            card.addEventListener('click', (event) => refreshWhenSelected(event), false)
+            //console.log(categoryId)
+            card.addEventListener('click', () => { refreshWhenSelected(categoryId) }, false)
             card.appendChild(cardCover);
             card.appendChild(textContainer);
             label.appendChild(card)
             cardContainer.setAttribute("style", `width: ${((291*(i+1))+10).toString()}px`)
+            label.appendChild(input)
             cardContainer.appendChild(label)
-            cardContainer.appendChild(input)
                 /*let movie = document.createElement("span");
                 movie.innerHTML = `<b>${nom.movie}</b></br>`;
                 let nominees = document.createElement("span");
@@ -146,25 +149,17 @@ function renderCategory(index) {
         })
         catContainer.appendChild(cardContainer);
         document.body.appendChild(catContainer);
+        refreshWhenSelected(categoryId)
     }
 }
 
-function refreshWhenSelected(event) {
-    const comparator = Array.from(document.querySelectorAll('.card_cover'))
-    var pick = '';
-    //console.log(event)
+function refreshWhenSelected(categoryId) {
+    //console.log(`#${categoryId}`)
+    const comparator = Array.from(document.querySelector(`#${categoryId}`).childNodes)
     comparator.forEach((ele) => {
-        ele.classList.remove('not_selected')
-        if (ele != event.target) { ele.classList.add('not_selected') }
-    })
-    setTimeout(() => { selectPick(); }, 0)
-}
-
-function selectPick() {
-    const selectors = Array.from(document.querySelectorAll('.radio_input'))
-    selectors.forEach((ele) => {
-        if (ele.checked) {
-            localStorage.setItem(ele.name, ele.id)
-        }
+        ele.firstChild.firstChild.classList.remove('not_selected')
+        setTimeout(() => { if(!ele.control.checked){
+            ele.firstChild.firstChild.classList.add('not_selected')
+        } else { localStorage.setItem(ele.control.name, ele.control.id) }}, 0)
     })
 }
