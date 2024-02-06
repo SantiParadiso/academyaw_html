@@ -118,9 +118,11 @@ function renderCategory() {
                             textContainer.appendChild(createContainer("p", "movie_name", `${nom.movie}`))
                             break;
                         case "song_name":
+                            textContainer.appendChild(createContainer("br"))
                             textContainer.appendChild(createContainer("p", "song_name", nom.song_name))
                             break;
                         case "as_character":
+                            textContainer.appendChild(createContainer("br"))
                             textContainer.appendChild(createContainer("p", "as_character", `as ${nom.as_character}`))
                             break;
                         case "img":

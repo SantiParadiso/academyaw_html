@@ -3,6 +3,8 @@ body {
     background-color: #540f80;
     margin: 0px;
     max-height: 100vh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 p {
@@ -25,6 +27,7 @@ p {
     display: flex;
     flex-direction: column;
     align-content: center;
+    max-height: 75vh;
     height: 45vh;
     width: 100vh;
     margin-left: 10px;
@@ -35,16 +38,17 @@ p {
     margin-top: 15px;
     margin-bottom: 15px;
     font-weight: bolder;
-    font-size: 3em;
+    font-size: 2em;
+    text-wrap: wrap;
     color: white;
     min-width: 50vw;
-    text-wrap: nowrap;
     left: 50px;
     top: -30px
 }
 
 .title_div {
     display: block;
+    width: 100vw;
 }
 
 .button {
@@ -154,7 +158,7 @@ p {
     padding-bottom: 10px;
     overflow-y: hidden;
     overflow-x: scroll;
-    padding-right: 580px;
+    padding-right: 310px;
 }
 
 .card_container.active {
@@ -164,14 +168,13 @@ p {
 }
 
 .scroll {
-    /*display: flex;
     position: sticky;
-    top: vh;
-    left: 5vw;
+    top: 10px;
+    margin-left: 10px;
     color: grey;
     z-index: 20;
     position: -webkit-sticky;
-    animation: bounceIn 2s infinite 2s;*/
+    animation: bounceIn 2s infinite 2s;
 }
 
 @keyframes bounceIn {
