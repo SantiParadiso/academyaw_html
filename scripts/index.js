@@ -81,7 +81,7 @@ function renderCategory(index) {
         const categoryId = allCats[j].category.toLowerCase().replace(/ /g, '_');
         const catContainer = createContainer("section", "nom_container")
         const titleContainer = createContainer("div", "title_div")
-        var selectedMovie = localStorage.getItem(categoryId);
+        const selectedMovie = localStorage.getItem(categoryId);
         titleContainer.appendChild(createContainer("p", "title", allCats[j].category + ":"));
         catContainer.appendChild(titleContainer);
         const cardContainer = createContainer("div", "card_container")
@@ -99,10 +99,10 @@ function renderCategory(index) {
             input.setAttribute("class", "radio_input")
             input.setAttribute("type", "radio")
             input.setAttribute("value", nom.movie)
-            if(selectedMovie && selectedMovie == movieId){input.setAttribute("checked", true);}
+            if(!!selectedMovie && selectedMovie == movieId){input.setAttribute("checked", true);}
             input.setAttribute("name", categoryId)
-            input.setAttribute("id", movieId)
-            label.setAttribute("for", movieId)
+            input.setAttribute("id", `${categoryId}-${movieId}`) //would love to have a shorter naming convention here
+            label.setAttribute("for", `${categoryId}-${movieId}`)
                 //
             for (var prop in nom) {
                 if (Object.prototype.hasOwnProperty.call(nom, prop)) {
@@ -159,7 +159,10 @@ function refreshWhenSelected(categoryId) {
     comparator.forEach((ele) => {
         ele.firstChild.firstChild.classList.remove('not_selected')
         setTimeout(() => { if(!ele.control.checked){
+            // console.log(ele.firstChild.firstChild)
             ele.firstChild.firstChild.classList.add('not_selected')
         } else { localStorage.setItem(ele.control.name, ele.control.id) }}, 0)
     })
 }
+
+// Needs some more UX love
